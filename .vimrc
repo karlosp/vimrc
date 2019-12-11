@@ -1,4 +1,4 @@
-"source ~/.vimcommon
+source ~/.vimcommon
 
 set clipboard=unnamed " save to system clipboard
 syntax on
@@ -45,7 +45,7 @@ set bs=indent,eol,start " Allow backspacing over everything in insert mode
 
 set tabstop=4           " number of spaces a tab counts for
 set shiftwidth=4        " spaces for autoindents
-"set expandtab           " turn a tabs into spaces
+set expandtab           " turn a tabs into spaces
 
 set fileformat=unix     " file mode is unix
 "set fileformats=unix,dos    " only detect unix file format, displays that ^M with dos files
