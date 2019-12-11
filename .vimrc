@@ -1,4 +1,4 @@
-source ~/.vimcommon
+"source ~/.vimcommon
 
 set clipboard=unnamed " save to system clipboard
 syntax on
