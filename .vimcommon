@@ -1,0 +1,32 @@
+:imap jk <Esc>
+
+" Use CTRL-S for saving, also in Insert mode
+noremap <C-S> :update<CR>
+vnoremap <C-S> <C-C>:update<CR>
+inoremap <C-S> <C-O>:update<CR>
+
+" by default easyclip will shadow The Add Mark key (m)
+nnoremap gm m
+
+
+set tabstop=2           " number of spaces a tab counts for
+set shiftwidth=2        " spaces for autoindents
+"set expandtab           " turn a tabs into spaces
+
+
+" system settings
+set history=50          " keep 50 lines of command history
+
+
+" color settings (if terminal/gui supports it)
+if &t_Co > 2 || has("gui_running")
+  syntax on          " enable colors
+  set hlsearch       " highlight search (very useful!)
+  set incsearch      " search incremently (search while typing)
+endif
+
+" paste mode toggle (needed when using autoindent/smartindent)
+map <F10> :set paste<CR>
+map <F11> :set nopaste<CR>
+imap <F10> <C-O>:set paste<CR>
+imap <F11> <nop>

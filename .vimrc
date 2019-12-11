@@ -1,12 +1,4 @@
-:imap jk <Esc>
-
-" Use CTRL-S for saving, also in Insert mode
-noremap <C-S> :update<CR>
-vnoremap <C-S> <C-C>:update<CR>
-inoremap <C-S> <C-O>:update<CR>
-
-" by default easyclip will shadow The Add Mark key (m)
-nnoremap gm m
+source ~/.vimcommon
 
 set clipboard=unnamed " save to system clipboard
 syntax on
@@ -20,8 +12,6 @@ if !empty($CONEMUBUILD)
     set bs=indent,eol,start
     colorscheme wombat256mod
 endif
-
-
 
 " reset to vim-defaults
 if &compatible          " only if not set before:
@@ -135,41 +125,4 @@ if has("autocmd")
     \ endif 
 
 endif " has("autocmd")
-
-"neobundle
-" Note: Skip initialization for vim-tiny or vim-small.
- if 0 | endif
-
- if has('vim_starting')
-   if &compatible
-     set nocompatible               " Be iMproved
-   endif
-
-   " Required:
-   set runtimepath+=~/.vim/bundle/neobundle.vim/
- endif
-
- " Required:
- call neobundle#begin(expand('~/.vim/bundle/'))
-
- " Let NeoBundle manage NeoBundle
- " Required:
- NeoBundleFetch 'Shougo/neobundle.vim'
-
- " My Bundles here:
- " Refer to |:NeoBundle-examples|.
- " Note: You don't set neobundle setting in .gvimrc!
- NeoBundle 'rhysd/vim-clang-format'
- NeoBundle 'tpope/vim-surround'
- NeoBundle 'svermeulen/vim-easyclip'
- NeoBundle 'tpope/vim-repeat'  
- call neobundle#end()
-
- " Required:
- filetype plugin indent on
-
- " If there are uninstalled bundles found on startup,
- " this will conveniently prompt you to install them.
- NeoBundleCheck
-
 
