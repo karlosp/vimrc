@@ -1,4 +1,5 @@
 :imap jk <Esc>
+set path+=**
 
 " Use CTRL-S for saving, also in Insert mode
 noremap <C-S> :update<CR>

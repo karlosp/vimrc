@@ -56,7 +56,7 @@ set confirm             " get a dialog when :q, :w, or :wq fails
 set nobackup            " no backup~ files.
 set viminfo='20,\"500   " remember copy registers after quitting in the .viminfo file -- 20 jump links, regs up to 500 lines'
 set hidden              " remember undo after quitting
-set history=50          " keep 50 lines of command history
+set history=500         " keep 50 lines of command history
 set mouse=a             " use mouse in visual mode (not normal,insert,command,help mode
 
 
@@ -126,3 +126,18 @@ if has("autocmd")
 
 endif " has("autocmd")
 
+" Plugins "
+
+" Install and run vim-plug on first run
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+    Plug 'itchyny/lightline.vim'
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf.vim'
+    Plug 'scrooloose/nerdtree'
+"    Plug 'terryma/vim-multiple-cursors'
+call plug#end()
