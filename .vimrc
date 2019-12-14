@@ -139,5 +139,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'scrooloose/nerdtree'
+    Plug 'mhinz/vim-startify'
 "    Plug 'terryma/vim-multiple-cursors'
 call plug#end()
