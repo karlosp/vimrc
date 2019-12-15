@@ -2,6 +2,9 @@
 set path+=**
 
 " Use CTRL-S for saving, also in Insert mode
+" Sometime these two lines must be put in ~/.bashrc
+"stty -ixon
+"stty stop ''
 noremap <C-S> :update<CR>
 vnoremap <C-S> <C-C>:update<CR>
 inoremap <C-S> <C-O>:update<CR>
