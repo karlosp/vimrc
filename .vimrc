@@ -1,4 +1,10 @@
 source ~/.vimcommon
+set ttymouse=sgr
+
+" copy (write) highlighted text to .vimbuffer
+vmap <C-S-c> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe <CR><CR>
+" paste from buffer
+map <C-S-v> :r ~/.vimbuffer<CR>
 
 " Save session on quitting Vim
 autocmd VimLeave * NERDTreeClose
@@ -142,6 +148,9 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+    Plug 'dbeniamine/cheat.sh-vim'
+    Plug 'fedorenchik/qt-support.vim'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
     Plug 'itchyny/lightline.vim'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
