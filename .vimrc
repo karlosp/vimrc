@@ -24,6 +24,8 @@ if !empty($CONEMUBUILD)
     let &t_AF="\e[38;5;%dm"
     set bs=indent,eol,start
     colorscheme wombat256mod
+else
+    colorscheme colorsbox-stbright
 endif
 
 " reset to vim-defaults
