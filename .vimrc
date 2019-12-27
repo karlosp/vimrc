@@ -80,6 +80,8 @@ if &t_Co > 2 || has("gui_running")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
     set guifont=Consolas:h11:cANSI
+    set guifont=DejaVuSansMono_NF:h9:cEASTEUROPE:qDRAFT 
+    colorscheme darkblue
   endif
 endif
 
@@ -151,10 +153,11 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+" LSP testing
     "Plug 'dense-analysis/ale'
-    Plug 'prabirshrestha/async.vim'
-    Plug 'prabirshrestha/vim-lsp'
-    Plug 'ajh17/vimcompletesme'
+    "Plug 'prabirshrestha/async.vim'
+    "Plug 'prabirshrestha/vim-lsp'
+    "Plug 'ajh17/vimcompletesme'
     Plug 'dbeniamine/cheat.sh-vim'
     Plug 'fedorenchik/qt-support.vim'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
@@ -181,6 +184,3 @@ if executable('clangd')
 	autocmd FileType cpp setlocal omnifunc=lsp#complete
     augroup end
 endif
-
-       " autocmd FileType c setlocal omnifunc=lsp#complete
-       " autocmd FileType cpp setlocal omnifunc=lsp#complete
