@@ -6,13 +6,6 @@ vmap <C-S-c> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe <
 " paste from buffer
 map <C-S-v> :r ~/.vimbuffer<CR>
 
-" Save session on quitting Vim
-autocmd VimLeave * NERDTreeClose
-autocmd VimLeave * mksession! ~/.vim/default_session
-
-" Restore session on starting Vim
-nnoremap <leader>lds :source ~/.vim/default_session<CR>:NERDTree<CR>
- 
 set clipboard=unnamed " save to system clipboard
 syntax on
 set autoread " detect when a file is changed
@@ -38,6 +31,7 @@ set background=dark     " enable for dark terminals
 set nowrap              " dont wrap lines
 set scrolloff=2         " 2 lines above/below cursor when scrolling
 set number              " show line numbers
+set relativenumber      " show relative number
 set showmatch           " show matching bracket (briefly jump)
 set showmode            " show mode in status bar (insert/replace/...)
 set showcmd             " show typed command in status bar
@@ -80,6 +74,13 @@ if &t_Co > 2 || has("gui_running")
   syntax on          " enable colors
   set hlsearch       " highlight search (very useful!)
   set incsearch      " search incremently (search while typing)
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+  elseif has("gui_macvim")
+    set guifont=Menlo\ Regular:h14
+  elseif has("gui_win32")
+    set guifont=Consolas:h11:cANSI
+  endif
 endif
 
 " paste mode toggle (needed when using autoindent/smartindent)
@@ -150,6 +151,10 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+    "Plug 'dense-analysis/ale'
+    Plug 'prabirshrestha/async.vim'
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'ajh17/vimcompletesme'
     Plug 'dbeniamine/cheat.sh-vim'
     Plug 'fedorenchik/qt-support.vim'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
@@ -161,3 +166,21 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-commentary'
 "    Plug 'terryma/vim-multiple-cursors'
 call plug#end()
+
+
+
+" autocmd! " Remove ALL autocommands for the current group.
+if executable('clangd')
+    augroup lsp_clangd
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'clangd',
+                    \ 'cmd': {server_info->['clangd', '--background-index']},
+                    \ 'whitelist': ['c', 'cpp'],
+                    \ })
+	autocmd FileType cpp setlocal omnifunc=lsp#complete
+    augroup end
+endif
+
+       " autocmd FileType c setlocal omnifunc=lsp#complete
+       " autocmd FileType cpp setlocal omnifunc=lsp#complete

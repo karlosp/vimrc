@@ -19,7 +19,7 @@ set shiftwidth=2        " spaces for autoindents
 
 
 " system settings
-set history=50          " keep 50 lines of command history
+set history=500          " keep 50 lines of command history
 
 
 " color settings (if terminal/gui supports it)
