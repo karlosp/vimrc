@@ -170,8 +170,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'scrooloose/nerdtree'
     Plug 'mhinz/vim-startify'
     Plug 'tpope/vim-commentary'
-    Plug 'tpope/vim-fugitive'
-"    Plug 'terryma/vim-multiple-cursors'
+    Plug 'mhinz/vim-signify'
 call plug#end()
 
 " Customizig LightLine
