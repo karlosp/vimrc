@@ -158,6 +158,8 @@ call plug#begin('~/.vim/plugged')
     "Plug 'prabirshrestha/async.vim'
     "Plug 'prabirshrestha/vim-lsp'
     "Plug 'ajh17/vimcompletesme'
+    Plug 'ap/vim-css-color'
+    Plug 'machakann/vim-highlightedyank'
     Plug 'dbeniamine/cheat.sh-vim'
     Plug 'tpope/vim-obsession'
     Plug 'fedorenchik/qt-support.vim'
