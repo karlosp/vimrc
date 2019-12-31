@@ -7,7 +7,7 @@ set path+=**
 "stty stop ''
 noremap <C-S> :update<CR>
 vnoremap <C-S> <C-C>:update<CR>
-inoremap <C-S> <C-O>:update<CR>
+inoremap <C-S> <C-O>:update<CR><ESC>
 
 " by default easyclip will shadow The Add Mark key (m)
 nnoremap gm m
