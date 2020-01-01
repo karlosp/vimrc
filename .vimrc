@@ -152,6 +152,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-startify'
     Plug 'tpope/vim-commentary'
     Plug 'mhinz/vim-signify'
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Customizing signify
