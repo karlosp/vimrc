@@ -7,11 +7,11 @@ set path+=**
 "stty stop ''
 noremap <C-S> :update<CR>
 vnoremap <C-S> <C-C>:update<CR>
-inoremap <C-S> <C-O>:update<CR><ESC>
-
+i noremap <C-S> <C-O>:update<CR><ESC>
+a
 " by default easyclip will shadow The Add Mark key (m)
 nnoremap gm m
-
+b
 
 set tabstop=2           " number of spaces a tab counts for
 set shiftwidth=2        " spaces for autoindents
