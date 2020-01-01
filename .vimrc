@@ -80,8 +80,8 @@ if &t_Co > 2 || has("gui_running")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
     set guifont=Consolas:h11:cANSI
-    set guifont=DejaVuSansMono_NF:h9:cEASTEUROPE:qDRAFT 
-    colorscheme darkblue
+    "set guifont=DejaVuSansMono_NF:h9:cEASTEUROPE:qDRAFT 
+    colorscheme colorsbox-stbright
   endif
 endif
 
