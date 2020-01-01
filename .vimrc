@@ -115,25 +115,6 @@ if has("autocmd")
     au FileType python set tabstop=4 softtabstop=4 expandtab shiftwidth=4 cinwords=if,elif,else,for,while,try,except,finally,def,class
   augroup END
 
-  augroup perl
-    " reset (disable previous 'augroup perl' settings)
-    au!  
-
-    au BufReadPre,BufNewFile
-    \ *.pl,*.pm
-    \ set formatoptions=croq smartindent shiftwidth=2 softtabstop=2 cindent cinkeys='0{,0},!^F,o,O,e' " tags=./tags,tags,~/devel/tags,~/devel/C
-    " formatoption:
-    "   t - wrap text using textwidth
-    "   c - wrap comments using textwidth (and auto insert comment leader)
-    "   r - auto insert comment leader when pressing <return> in insert mode
-    "   o - auto insert comment leader when pressing 'o' or 'O'.
-    "   q - allow formatting of comments with "gq"
-    "   a - auto formatting for paragraphs
-    "   n - auto wrap numbered lists
-    "   
-  augroup END
-
-
   " Always jump to the last known cursor position. 
   " Don't do it when the position is invalid or when inside
   " an event handler (happens when dropping a file on gvim). 
