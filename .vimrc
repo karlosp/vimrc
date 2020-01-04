@@ -8,7 +8,6 @@ map <C-S-v> :r ~/.vimbuffer<CR>
 
 set clipboard=unnamed " save to system clipboard
 syntax on
-set autoread " detect when a file is changed
 
 if !empty($CONEMUBUILD)
     set term=pcansi
