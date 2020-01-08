@@ -160,6 +160,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-startify'
     Plug 'tpope/vim-commentary'
     Plug 'mhinz/vim-signify'
+    Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
 call plug#end()
 
