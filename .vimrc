@@ -29,6 +29,8 @@ else
     colorscheme colorsbox-stbright
 endif
 
+set encoding=utf-8
+
 " reset to vim-defaults
 if &compatible          " only if not set before:
   set nocompatible      " use vim-defaults instead of vi-defaults (easier, more user friendly)
@@ -162,7 +164,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-signify'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
 call plug#end()
+let g:deoplete#enable_at_startup = 1
+
 
 " Customizing signify
 nnoremap <leader>gd :SignifyDiff<cr>
