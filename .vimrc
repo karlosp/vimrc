@@ -164,9 +164,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-signify'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
 call plug#end()
 let g:deoplete#enable_at_startup = 1
 
