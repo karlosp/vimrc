@@ -5,9 +5,9 @@ set path+=**
 " Sometime these two lines must be put in ~/.bashrc
 "stty -ixon
 "stty stop ''
-noremap <C-S> :update<CR>
-vnoremap <C-S> <C-C>:update<CR>
-inoremap <C-S> <C-O>:update<CR><ESC>
+noremap <C-S> :w<CR>
+vnoremap <C-S> <C-C>:w<CR>
+inoremap <C-S> <C-O>:w<CR><ESC>
 
 " MOVE LINE/BLOCK
 nnoremap <A-j> :m+<CR>==
