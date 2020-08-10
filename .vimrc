@@ -26,7 +26,7 @@ if !empty($CONEMUBUILD)
     set bs=indent,eol,start
     colorscheme wombat256mod
 else
-    colorscheme colorsbox-stbright
+      colorscheme colorsbox-stbright
 endif
 
 set encoding=utf-8
@@ -145,10 +145,10 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " LSP testing
-    "Plug 'dense-analysis/ale'
-    "Plug 'prabirshrestha/async.vim'
-    "Plug 'prabirshrestha/vim-lsp'
-    "Plug 'ajh17/vimcompletesme'
+    " Plug 'dense-analysis/ale'
+    Plug 'prabirshrestha/async.vim'
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'ajh17/vimcompletesme'
     Plug 'ap/vim-css-color'
     Plug 'machakann/vim-highlightedyank'
     Plug 'dbeniamine/cheat.sh-vim'
@@ -164,6 +164,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-signify'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
+    Plug 'powerline/powerline'
 call plug#end()
 let g:deoplete#enable_at_startup = 1
 
@@ -232,14 +233,36 @@ exec 'nnoremap <Leader>sr :so ' . g:sessions_dir . '/*.vim<C-D><BS><BS><BS><BS><
 " ~~~~~~~~~~~~~~~~~~~~~~~~~ End Session configurations ~~~~~~~~~~~~~~~
 
 " autocmd! " Remove ALL autocommands for the current group.
-if executable('clangd')
+if executable('/home/codac-dev/Documents/clangd/build/bin/clangd')
     augroup lsp_clangd
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
                     \ 'name': 'clangd',
-                    \ 'cmd': {server_info->['clangd', '--background-index']},
+                    \ 'cmd': {server_info->['/home/codac-dev/Documents/clangd/build/bin/clangd', '--background-index']},
                     \ 'whitelist': ['c', 'cpp'],
                     \ })
 	autocmd FileType cpp setlocal omnifunc=lsp#complete
     augroup end
 endif
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+		setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+ 
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
