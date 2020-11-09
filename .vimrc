@@ -226,6 +226,7 @@ command! -bang -nargs=? -complete=dir Files
 
 " ~~~~~~~~~~~~~~~~~~ Session configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let g:sessions_dir = '~/vim-sessions'
+set sessionoptions-=blank
 
 " Remaps for Sessions
 exec 'nnoremap <Leader>ss :Obsession '. g:sessions_dir . '/*.vim<C-D><BS><BS><BS><BS><BS>'
