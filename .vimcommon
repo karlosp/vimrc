@@ -1,6 +1,15 @@
 :imap jk <Esc>
 set path+=**
 
+" remap Leader
+:let mapleader = ","
+
+" Remaps for easyer access 
+nnoremap <Leader>w <C-w>
+nnoremap <Leader>m <C-w>
+tnoremap <Leader>n <C-\><C-n>
+tnoremap <Leader><Esc> <C-\><C-n>:bd!<CR>
+
 " Use CTRL-S for saving, also in Insert mode
 " Sometime these two lines must be put in ~/.bashrc
 "stty -ixon
