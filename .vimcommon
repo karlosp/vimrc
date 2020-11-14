@@ -7,8 +7,17 @@ set path+=**
 " Remaps for easyer access 
 nnoremap <Leader>w <C-w>
 nnoremap <Leader>m <C-w>
+nnoremap <Leader>h <C-w>h
+nnoremap <Leader>j <C-w>j
+nnoremap <Leader>k <C-w>k
+nnoremap <Leader>l <C-w>l
+
 tnoremap <Leader>n <C-\><C-n>
-tnoremap <Leader><Esc> <C-\><C-n>:bd!<CR>
+tnoremap <Leader>h <C-\><C-n><C-w>h
+tnoremap <Leader>j <C-\><C-n><C-w>j
+tnoremap <Leader>k <C-\><C-n><C-w>k
+tnoremap <Leader>l <C-\><C-n><C-w>l
+tnoremap <Leader><Esc> <C-\><C-n>:bd<CR>
 
 " Use CTRL-S for saving, also in Insert mode
 " Sometime these two lines must be put in ~/.bashrc
