@@ -171,6 +171,12 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 let g:deoplete#enable_at_startup = 1
 
+
+" ------ START Startify config ------
+" remove cow header
+let g:startify_custom_header =['     >>>>  Startify VIM <<<<']
+" ------ END Startify config   ------
+
 " ------ START NERDTree config ------
 " Check if NERDTree is open or active
 function! IsNERDTreeOpen()
@@ -204,9 +210,6 @@ function! ToggleTree()
     NERDTree
   endif
 endfunction
-
-" Highlight currently open buffer in NERDTree
-autocmd BufEnter * call SyncTree()
 
 " open NERDTree with ctrl + n
 nmap <C-n> :call ToggleTree()<CR>
