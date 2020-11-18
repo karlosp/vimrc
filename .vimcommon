@@ -12,7 +12,7 @@ nnoremap <Leader>j <C-w>j
 nnoremap <Leader>k <C-w>k
 nnoremap <Leader>l <C-w>l
 
-tnoremap <Leader>n <C-\><C-n>
+tnoremap <Leader>, <C-\><C-n>
 tnoremap <Leader>h <C-\><C-n><C-w>h
 tnoremap <Leader>j <C-\><C-n><C-w>j
 tnoremap <Leader>k <C-\><C-n><C-w>k
@@ -46,6 +46,24 @@ set shiftwidth=2        " spaces for autoindents
 " system settings
 set history=500          " keep 50 lines of command history
 
+" Use persistent history
+function! EnsureDirExists (dir)
+  if !isdirectory(a:dir)
+    if exists("*mkdir")
+      call mkdir(a:dir,'p')
+      echo "Created directory: " . a:dir
+    else
+      echo "Please create directory: " . a:dir
+    endif
+  endif
+endfunction
+
+call EnsureDirExists($HOME . '/.vim/undodir')
+let myUndoDir = '~/.vim/undodir'
+set undofile                " Save undos after file closes
+set undodir=~/.vim/undodir  " where to save undo histories
+set undolevels=1000         " How many undos
+set undoreload=10000        " number of lines to save for undo
 
 " color settings (if terminal/gui supports it)
 if &t_Co > 2 || has("gui_running")
