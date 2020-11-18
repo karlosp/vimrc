@@ -212,7 +212,7 @@ function! ToggleTree()
 endfunction
 
 " open NERDTree with ctrl + n
-nmap <C-n> :call ToggleTree()<CR>
+nmap <F3> :call ToggleTree()<CR>
 "  ----- END   NERDTree config ------
 
 " Customizing signify
