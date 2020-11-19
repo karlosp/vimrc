@@ -1,4 +1,4 @@
-﻿" -----------------------------------------------------------------------------
+" -----------------------------------------------------------------------------
 " File: colorsbox.vim
 " Description: Material color scheme using gruvbox as a skel
 " Author: mkarmona <mkarmona@gmail.com>
