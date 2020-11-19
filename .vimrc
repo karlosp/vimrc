@@ -17,7 +17,7 @@ let &t_EI.="\e[6 q" "EI = NORMAL mode (ELSE)
 "  6 -> solid vertical bar
 
 if has("autocmd") && $GNOME_SHELL_SESSION_MODE != ""
-  echo "Changing cursors in GNOME SHELL"
+  " echo "Changing cursors in GNOME SHELL"
   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[6 q"' | redraw!
   au InsertEnter,InsertChange *
     \ if v:insertmode == 'i' | 
