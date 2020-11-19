@@ -2,7 +2,7 @@
 set path+=**
 
 " remap Leader
-:let mapleader = ","
+let g:mapleader = "\<Space>"
 
 " Remaps for easyer access 
 nnoremap <Leader>w <C-w>

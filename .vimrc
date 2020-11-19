@@ -1,6 +1,20 @@
 source ~/.vimcommon
 set ttymouse=sgr
 
+" Switch between tabs
+nmap <leader>1 1gt
+nmap <leader>2 2gt
+nmap <leader>3 3gt
+nmap <leader>4 4gt
+nmap <leader>5 5gt
+nmap <leader>6 6gt
+nmap <leader>7 7gt
+nmap <leader>8 8gt
+nmap <leader>9 9gt
+
+" Select all text
+noremap vA ggVG
+
 "Mode Settings
 set cursorline
 
@@ -190,6 +204,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'itchyny/lightline.vim'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
+    "{{{
+    nnoremap <silent> <leader>f   :GFiles<CR>
+    nnoremap <silent> <leader>b   :Buffers<CR>
+    nnoremap <silent> <leader>?  :History<CR>
+    nnoremap <silent> <leader>bl   :BLines<CR>
+    nnoremap <silent> <leader>c   :Commits<CR>
+    "}}}
     Plug 'scrooloose/nerdtree'
     Plug 'mhinz/vim-startify'
     Plug 'tpope/vim-commentary'
