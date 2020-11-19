@@ -1,6 +1,34 @@
 source ~/.vimcommon
 set ttymouse=sgr
 
+"Mode Settings
+set cursorline
+
+let &t_SI.="\e[5 q" "SI = INSERT mode
+let &t_SR.="\e[3 q" "SR = REPLACE mode
+let &t_EI.="\e[6 q" "EI = NORMAL mode (ELSE)
+" ========== Cursor settings: ===============
+
+"  1 -> blinking block
+"  2 -> solid block 
+"  3 -> blinking underscore
+"  4 -> solid underscore
+"  5 -> blinking vertical bar
+"  6 -> solid vertical bar
+
+if has("autocmd") && $GNOME_SHELL_SESSION_MODE != ""
+  echo "Changing cursors in GNOME SHELL"
+  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[6 q"' | redraw!
+  au InsertEnter,InsertChange *
+    \ if v:insertmode == 'i' | 
+    \   silent execute '!echo -ne "\e[5 q"' | redraw! |
+    \ elseif v:insertmode == 'r' |
+    \   silent execute '!echo -ne "\e[3 q"' | redraw! |
+    \ endif
+  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+endif
+" ========== END Cursor settings ==============
+
 " copy (write) highlighted text to .vimbuffer
 vmap <C-S-c> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe <CR><CR>
 " paste from buffer
