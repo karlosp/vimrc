@@ -228,6 +228,14 @@ let g:startify_custom_header =['     >>>>  Startify VIM <<<<']
 " ------ END Startify config   ------
 
 " ------ START NERDTree config ------
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeHijackNetrw = 0
+let g:NERDTreeWinSize = 31
+let g:NERDTreeChDirMode = 2
+let g:NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeShowBookmarks = 1
+let g:NERDTreeCascadeOpenSingleChildDir = 1
+
 " Check if NERDTree is open or active
 function! IsNERDTreeOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)

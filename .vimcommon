@@ -1,23 +1,35 @@
 :imap jk <Esc>
 set path+=**
 
+"  A yank command can be redone with ".".
+set cpoptions+=y
+
+
 " remap Leader
-let g:mapleader = "\<Space>"
+let g:mapleader = "s"
 
 " Remaps for easyer access 
-nnoremap <Leader>w <C-w>
-nnoremap <Leader>m <C-w>
+" Change focus
 nnoremap <Leader>h <C-w>h
 nnoremap <Leader>j <C-w>j
 nnoremap <Leader>k <C-w>k
 nnoremap <Leader>l <C-w>l
 
+" Move window
+nnoremap <Leader>mh <C-w>H
+nnoremap <Leader>mj <C-w>J
+nnoremap <Leader>mk <C-w>K
+nnoremap <Leader>ml <C-w>L
+
+let g:mapleader = ","
 tnoremap <Leader>, <C-\><C-n>
-tnoremap <Leader>h <C-\><C-n><C-w>h
-tnoremap <Leader>j <C-\><C-n><C-w>j
-tnoremap <Leader>k <C-\><C-n><C-w>k
-tnoremap <Leader>l <C-\><C-n><C-w>l
-tnoremap <Leader><Esc> <C-\><C-n>:bd<CR>
+" tnoremap <Leader>h <C-\><C-n><C-w>h
+" tnoremap <Leader>j <C-\><C-n><C-w>j
+" tnoremap <Leader>k <C-\><C-n><C-w>k
+" tnoremap <Leader>l <C-\><C-n><C-w>l
+tnoremap <Leader><Esc> <C-\><C-n>:bd!<CR>
+
+let g:mapleader = "\<Space>"
 
 " Use CTRL-S for saving, also in Insert mode
 " Sometime these two lines must be put in ~/.bashrc
