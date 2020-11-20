@@ -20,7 +20,7 @@ set cursorline
 
 let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[3 q" "SR = REPLACE mode
-let &t_EI.="\e[6 q" "EI = NORMAL mode (ELSE)
+let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 " ========== Cursor settings: ===============
 
 "  1 -> blinking block
@@ -32,7 +32,7 @@ let &t_EI.="\e[6 q" "EI = NORMAL mode (ELSE)
 
 if has("autocmd") && $GNOME_SHELL_SESSION_MODE != ""
   " echo "Changing cursors in GNOME SHELL"
-  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[6 q"' | redraw!
+  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
   au InsertEnter,InsertChange *
     \ if v:insertmode == 'i' | 
     \   silent execute '!echo -ne "\e[5 q"' | redraw! |
