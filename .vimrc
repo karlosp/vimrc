@@ -205,7 +205,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
     "{{{
-    nnoremap <silent> <leader>f   :GFiles<CR>
+    nnoremap <silent> <leader>f   :Files<CR>
+    nnoremap <silent> <leader>gf   :GFiles<CR>
     nnoremap <silent> <leader>b   :Buffers<CR>
     nnoremap <silent> <leader>?  :History<CR>
     nnoremap <silent> <leader>bl   :BLines<CR>
@@ -322,8 +323,11 @@ let g:lightline = {
     \ }
 
 " FZF customization
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'bat {}']}, <bang>0)
+" command! -bang -nargs=? -complete=dir Files
+"     \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'bat --color=always --style=header,grid --line-range :300 {}']}, <bang>0)
+
+" command! -bang -nargs=? -complete=dir GFiles
+"     \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'bat --color=always --style=header,grid --line-range :300 {}']}, <bang>0)
 
 " ~~~~~~~~~~~~~~~~~~ Session configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let g:sessions_dir = '~/vim-sessions'
