@@ -1,13 +1,9 @@
 source ~/.vimcommon
+
 set ttymouse=sgr
 
 "Set shell
-if has("win32") && executable(wsl.exe)
-    set shell=C:\Windows\Sysnative\wsl.exe
-    set shellpipe=|
-    set shellredir=>
-    set shellcmdflag=
-elseif executable("zsh")
+if executable("zsh")
     set shell=zsh
 endif
 
@@ -194,7 +190,16 @@ endif " has("autocmd")
 " Plugins "
 
 " Install and run vim-plug on first run
-if empty(glob('~/.vim/autoload/plug.vim'))
+if has("win32")
+    if !filereadable(expand('$HOME\vimfiles\autoload\plug.vim'))
+      echo "plug.vim is not installed , installing"
+      let current_shell = &shell
+      echo "Current shell is " current_shell
+      set shell=powershell
+      silent !"iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |` ni $HOME/vimfiles/autoload/plug.vim -Force"
+      let &shell=current_shell
+    endif
+elseif empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
