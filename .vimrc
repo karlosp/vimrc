@@ -1,6 +1,16 @@
 source ~/.vimcommon
 set ttymouse=sgr
 
+"Set shell
+if has("win32") && executable(wsl.exe)
+    set shell=C:\Windows\Sysnative\wsl.exe
+    set shellpipe=|
+    set shellredir=>
+    set shellcmdflag=
+elseif executable("zsh")
+    set shell=zsh
+endif
+
 " Switch between tabs
 nmap <leader>1 1gt
 nmap <leader>2 2gt
