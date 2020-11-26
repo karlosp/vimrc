@@ -225,7 +225,9 @@ call plug#begin('~/.vim/plugged')
     nnoremap <silent> <leader>b   :Buffers<CR>
     nnoremap <silent> <leader>?  :History<CR>
     nnoremap <silent> <leader>bl   :BLines<CR>
+    nnoremap <silent> <leader>l   :Lines<CR>
     nnoremap <silent> <leader>c   :Commits<CR>
+    nmap <silent> cc :Commands!<CR>
     "}}}
     Plug 'scrooloose/nerdtree'
     Plug 'mhinz/vim-startify'
