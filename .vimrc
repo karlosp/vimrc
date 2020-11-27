@@ -28,7 +28,7 @@ let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[3 q" "SR = REPLACE mode
 let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 " ========== Cursor settings: ===============
-
+" {{{
 "  1 -> blinking block
 "  2 -> solid block 
 "  3 -> blinking underscore
@@ -47,6 +47,7 @@ if has("autocmd") && $GNOME_SHELL_SESSION_MODE != ""
     \ endif
   au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
 endif
+" }}}
 " ========== END Cursor settings ==============
 
 " copy (write) highlighted text to .vimbuffer
@@ -206,90 +207,87 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " LSP testing
-    " Plug 'dense-analysis/ale'
-    Plug 'prabirshrestha/async.vim'
-    Plug 'prabirshrestha/vim-lsp'
-    Plug 'ajh17/vimcompletesme'
-    Plug 'ap/vim-css-color'
-    Plug 'machakann/vim-highlightedyank'
-    Plug 'dbeniamine/cheat.sh-vim'
-    Plug 'tpope/vim-obsession'
-    Plug 'fedorenchik/qt-support.vim'
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-    Plug 'itchyny/lightline.vim'
-    Plug 'junegunn/fzf'
-    Plug 'junegunn/fzf.vim'
-    "{{{
-    nnoremap <silent> <leader>f   :Files<CR>
-    nnoremap <silent> <leader>gf   :GFiles<CR>
-    nnoremap <silent> <leader>b   :Buffers<CR>
-    nnoremap <silent> <leader>?  :History<CR>
-    nnoremap <silent> <leader>bl   :BLines<CR>
-    nnoremap <silent> <leader>l   :Lines<CR>
-    nnoremap <silent> <leader>c   :Commits<CR>
-    nmap <silent> cc :Commands!<CR>
-    "}}}
-    Plug 'scrooloose/nerdtree'
-    Plug 'mhinz/vim-startify'
-    Plug 'tpope/vim-commentary'
-    Plug 'mhinz/vim-signify'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'tpope/vim-fugitive'
-    Plug 'powerline/powerline'
+" Plug 'dense-analysis/ale'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'ajh17/vimcompletesme'
+Plug 'ap/vim-css-color'
+Plug 'machakann/vim-highlightedyank'
+Plug 'dbeniamine/cheat.sh-vim'
+Plug 'tpope/vim-obsession'
+Plug 'fedorenchik/qt-support.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+" {{{
+  nnoremap <silent> <leader>f   :Files<CR>
+  nnoremap <silent> <leader>gf   :GFiles<CR>
+  nnoremap <silent> <leader>b   :Buffers<CR>
+  nnoremap <silent> <leader>?  :History<CR>
+  nnoremap <silent> <leader>bl   :BLines<CR>
+  nnoremap <silent> <leader>l   :Lines<CR>
+  nnoremap <silent> <leader>c   :Commits<CR>
+  nmap <silent> cc :Commands!<CR>
+" }}}
+Plug 'scrooloose/nerdtree'
+" {{{
+  let g:NERDTreeMinimalUI = 1
+  let g:NERDTreeHijackNetrw = 0
+  let g:NERDTreeWinSize = 31
+  let g:NERDTreeChDirMode = 2
+  let g:NERDTreeAutoDeleteBuffer = 1
+  let g:NERDTreeShowBookmarks = 1
+  let g:NERDTreeCascadeOpenSingleChildDir = 1
+
+  " Check if NERDTree is open or active
+  function! IsNERDTreeOpen()
+    return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+  endfunction
+
+  function! CheckIfCurrentBufferIsFile()
+    return strlen(expand('%')) > 0
+  endfunction
+
+  " Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+  " file, and we're not in vimdiff
+  function! SyncTree()
+    if &modifiable && IsNERDTreeOpen() && CheckIfCurrentBufferIsFile() && !&diff
+      NERDTreeFind
+      wincmd p
+    endif
+  endfunction
+
+  " Highlight currently open buffer in NERDTree
+  autocmd BufRead * call SyncTree()
+
+  function! ToggleTree()
+    if CheckIfCurrentBufferIsFile()
+      if IsNERDTreeOpen()
+        NERDTreeClose
+      else
+        NERDTreeFind
+      endif
+    else
+      NERDTree
+    endif
+  endfunction
+
+  " open NERDTree with ctrl + n
+  nmap <F3> :call ToggleTree()<CR>
+  " }}}
+Plug 'mhinz/vim-startify'
+" {{{
+  " remove cow header
+  let g:startify_custom_header =['     >>>>  Startify VIM <<<<']
+" }}}
+Plug 'tpope/vim-commentary'
+Plug 'mhinz/vim-signify'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'powerline/powerline'
 call plug#end()
 let g:deoplete#enable_at_startup = 1
-
-
-" ------ START Startify config ------
-" remove cow header
-let g:startify_custom_header =['     >>>>  Startify VIM <<<<']
-" ------ END Startify config   ------
-
-" ------ START NERDTree config ------
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeHijackNetrw = 0
-let g:NERDTreeWinSize = 31
-let g:NERDTreeChDirMode = 2
-let g:NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeShowBookmarks = 1
-let g:NERDTreeCascadeOpenSingleChildDir = 1
-
-" Check if NERDTree is open or active
-function! IsNERDTreeOpen()
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-function! CheckIfCurrentBufferIsFile()
-  return strlen(expand('%')) > 0
-endfunction
-
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && CheckIfCurrentBufferIsFile() && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
-endfunction
-
-" Highlight currently open buffer in NERDTree
-autocmd BufRead * call SyncTree()
-
-function! ToggleTree()
-  if CheckIfCurrentBufferIsFile()
-    if IsNERDTreeOpen()
-      NERDTreeClose
-    else
-      NERDTreeFind
-    endif
-  else
-    NERDTree
-  endif
-endfunction
-
-" open NERDTree with ctrl + n
-nmap <F3> :call ToggleTree()<CR>
-"  ----- END   NERDTree config ------
 
 " Customizing signify
 nnoremap <leader>gd :SignifyDiff<cr>
