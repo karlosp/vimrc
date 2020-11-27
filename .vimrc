@@ -120,6 +120,7 @@ set fileformat=unix     " file mode is unix
 
 " system settings
 set lazyredraw          " no redraws in macros
+set noswapfile          " disable creating of *.swp files
 set confirm             " get a dialog when :q, :w, or :wq fails
 set nobackup            " no backup~ files.
 set viminfo='20,\"500   " remember copy registers after quitting in the .viminfo file -- 20 jump links, regs up to 500 lines'
