@@ -63,7 +63,7 @@ function! s:DiffWithSaved()
 endfunction
 com! DiffSaved call s:DiffWithSaved()
 
-set clipboard=unnamed " save to system clipboard
+set clipboard=unnamedplus " save to system clipboard
 syntax on
 
 if !empty($CONEMUBUILD)

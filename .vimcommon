@@ -27,10 +27,17 @@ nnoremap <Leader>ml <C-w>L
 
 let g:mapleader = ","
 tnoremap <Leader>, <C-\><C-n>
-" tnoremap <Leader>h <C-\><C-n><C-w>h
-" tnoremap <Leader>j <C-\><C-n><C-w>j
-" tnoremap <Leader>k <C-\><C-n><C-w>k
-" tnoremap <Leader>l <C-\><C-n><C-w>l
+tnoremap <Leader>h <C-w>:wincmd h<CR>
+tnoremap <Leader>j <C-w>:wincmd j<CR>
+tnoremap <Leader>k <C-w>:wincmd k<CR>
+tnoremap <Leader>l <C-w>:wincmd l<CR>
+tnoremap <silent> <Leader>m <C-w>:wincmd w<CR> " Move to next window
+let i = 1
+while i <= 9
+  execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+  execute 'tnoremap <Leader>' . i . ' <C-w>:' .  i . 'wincmd w<CR>'
+  let i = i + 1
+endwhile
 tnoremap <Leader><Esc> <C-\><C-n>:bd!<CR>
 
 let g:mapleader = "\<Space>"
