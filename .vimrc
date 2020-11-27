@@ -337,13 +337,6 @@ let g:lightline = {
       \ },
     \ }
 
-" FZF customization
-" command! -bang -nargs=? -complete=dir Files
-"     \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'bat --color=always --style=header,grid --line-range :300 {}']}, <bang>0)
-
-" command! -bang -nargs=? -complete=dir GFiles
-"     \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'bat --color=always --style=header,grid --line-range :300 {}']}, <bang>0)
-
 " ~~~~~~~~~~~~~~~~~~ Session configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let g:sessions_dir = '~/vim-sessions'
 set sessionoptions-=blank
