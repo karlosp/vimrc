@@ -289,6 +289,21 @@ Plug 'airblade/vim-gitgutter'
 " }}}
 Plug 'tpope/vim-fugitive'
 Plug 'powerline/powerline'
+Plug 'tyru/open-browser.vim'
+" {{{
+  let g:netrw_nogx = 1
+  vmap gx <Plug>(openbrowser-smart-search)
+  nmap gx <Plug>(openbrowser-search)
+" }}}
+Plug 'Shougo/junkfile.vim'
+" {{{
+  nnoremap <leader>jo :JunkfileOpen 
+  let g:junkfile#directory = $HOME . '/.vim/cache/junkfile'
+" }}}
+Plug 'junegunn/vim-peekaboo'
+" {{{
+  let g:peekaboo_delay = 400
+" }}}
 call plug#end()
 let g:deoplete#enable_at_startup = 1
 
