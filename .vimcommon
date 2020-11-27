@@ -4,6 +4,8 @@ set path+=**
 " With thism you can enter ":Config" in normal mode to open the vimrc
 command! Config execute ":e $MYVIMRC"
 
+" rebinds semi-colon in normal mode.
+nnoremap ; :
 
 "  A yank command can be redone with ".".
 set cpoptions+=y
@@ -13,6 +15,7 @@ let g:mapleader = "s"
 
 " Remaps for easyer access 
 " Change focus
+nnoremap <Leader>o <C-w>o
 nnoremap <Leader>h <C-w>h
 nnoremap <Leader>j <C-w>j
 nnoremap <Leader>k <C-w>k
