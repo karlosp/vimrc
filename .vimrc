@@ -284,6 +284,9 @@ Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-commentary'
 Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
+" {{{
+  set updatetime=500
+" }}}
 Plug 'tpope/vim-fugitive'
 Plug 'powerline/powerline'
 call plug#end()
