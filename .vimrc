@@ -27,6 +27,20 @@ set cursorline
 let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[3 q" "SR = REPLACE mode
 let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
+
+" ====== GNOME TERMINAL SETTINGS =======  {{{
+let &t_TI = ""
+let &t_TE = ""
+
+" MOVE LINE/BLOCK
+" Workaround for Alt to work in Gnome terminal :(
+let c='a'
+while c <= 'z'
+  exec "set <A-".c.">=\e".c
+  exec "imap \e".c." <A-".c.">"
+  let c = nr2char(1+char2nr(c))
+endw
+
 " ========== Cursor settings: ===============
 " {{{
 "  1 -> blinking block
@@ -49,6 +63,7 @@ if has("autocmd") && $GNOME_SHELL_SESSION_MODE != ""
 endif
 " }}}
 " ========== END Cursor settings ==============
+" }}}
 
 " copy (write) highlighted text to .vimbuffer
 vmap <C-S-c> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe <CR><CR>
@@ -123,7 +138,7 @@ set lazyredraw          " no redraws in macros
 set noswapfile          " disable creating of *.swp files
 set confirm             " get a dialog when :q, :w, or :wq fails
 set nobackup            " no backup~ files.
-set viminfo='20,\"500   " remember copy registers after quitting in the .viminfo file -- 20 jump links, regs up to 500 lines'
+set viminfo='100,\"500   " remember copy registers after quitting in the .viminfo file -- 20 jump links, regs up to 500 lines'
 set hidden              " remember undo after quitting
 set history=500         " keep 50 lines of command history
 set mouse=a             " use mouse in visual mode (not normal,insert,command,help mode
@@ -174,6 +189,7 @@ if has("autocmd")
   augroup mysettings
     au FileType xslt,xml,css,html,xhtml,javascript,sh,config,c,cpp,docbook set smartindent shiftwidth=2 softtabstop=2 expandtab
     au FileType tex set wrap shiftwidth=2 softtabstop=2 expandtab
+    autocmd FileType c,cpp setlocal complete-=i
 
     " Confirm to PEP8
     au FileType python set tabstop=4 softtabstop=4 expandtab shiftwidth=4 cinwords=if,elif,else,for,while,try,except,finally,def,class
@@ -214,6 +230,29 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'ajh17/vimcompletesme'
 Plug 'ap/vim-css-color'
 Plug 'machakann/vim-highlightedyank'
+Plug 'puremourning/vimspector'
+" {{{
+  let g:vimspector_enable_mappings = 'HUMAN'
+" }}}
+Plug 'szw/vim-maximizer'
+" {{{
+  "Whether Maximizer should set default mappings or not:
+  let g:maximizer_set_default_mapping = 1
+  let g:maximizer_default_mapping_key = '<F2>'
+  let g:maximizer_set_mapping_with_bang = 0
+" }}}
+Plug 'tpope/vim-dispatch'
+Plug 'ilyachur/cmake4vim'
+" {{{
+let g:cmake_compile_commands = 1
+let g:cmake_compile_commands_link = '.'
+" }}}
+" Plug 'cdelledonne/vim-cmake'
+" Plug 'foonathan/vim-cmake', {'as':'vim-cmake', 'branch':'feature/cmake_build_directory'}
+" " {{{
+"   let g:cmake_build_directory = '..'
+"   let g:cmake_link_compile_commands = 1
+" " }}}
 Plug 'dbeniamine/cheat.sh-vim'
 Plug 'tpope/vim-obsession'
 Plug 'fedorenchik/qt-support.vim'
@@ -229,6 +268,7 @@ Plug 'junegunn/fzf.vim'
   nnoremap <silent> <leader>bl   :BLines<CR>
   nnoremap <silent> <leader>l   :Lines<CR>
   nnoremap <silent> <leader>c   :Commits<CR>
+  nnoremap <silent> <leader>a   :Ag<CR>
   nmap <silent> cc :Commands!<CR>
 " }}}
 Plug 'scrooloose/nerdtree'

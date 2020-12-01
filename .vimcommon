@@ -1,8 +1,22 @@
 :imap jk <Esc>
+:imap kj <Esc>:
+
+let g:netrw_liststyle     = 2
+let g:netrw_special_syntax= 1
+
 set path+=**
 
 " With thism you can enter ":Config" in normal mode to open the vimrc
 command! Config execute ":e $MYVIMRC"
+" Reloads vimrc after saving but keep cursor position
+if !exists('*ReloadVimrc')
+   fun! ReloadVimrc()
+       let save_cursor = getcurpos()
+       source $MYVIMRC
+       call setpos('.', save_cursor)
+   endfun
+endif
+autocmd! BufWritePost $MYVIMRC call ReloadVimrc()
 
 " rebinds semi-colon in normal mode.
 nnoremap ; :
@@ -11,7 +25,7 @@ nnoremap ; :
 set cpoptions+=y
 
 " remap Leader
-let g:mapleader = "s"
+let g:mapleader = "w"
 
 " Remaps for easyer access 
 " Change focus
@@ -28,7 +42,7 @@ nnoremap <Leader>mk <C-w>K
 nnoremap <Leader>ml <C-w>L
 
 let g:mapleader = ","
-tnoremap <Leader>, <C-\><C-n>
+tnoremap ,, <C-\><C-n>
 tnoremap <Leader>h <C-w>:wincmd h<CR>
 tnoremap <Leader>j <C-w>:wincmd j<CR>
 tnoremap <Leader>k <C-w>:wincmd k<CR>
@@ -51,15 +65,6 @@ let g:mapleader = "\<Space>"
 noremap <C-S> :w<CR>
 vnoremap <C-S> <C-C>:w<CR>
 inoremap <C-S> <C-O>:w<CR><ESC>
-
-" MOVE LINE/BLOCK
-" Workaround for Alt to work in Gnome terminal :(
-let c='a'
-while c <= 'z'
-  exec "set <A-".c.">=\e".c
-  exec "imap \e".c." <A-".c.">"
-  let c = nr2char(1+char2nr(c))
-endw
 
 set timeout ttimeoutlen=50
 " END
