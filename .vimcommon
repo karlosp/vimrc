@@ -1,15 +1,32 @@
 :imap jk <Esc>
 :imap kj <Esc>:
 
+set path+=**
+
 set splitright
 set splitbelow
 
 let g:netrw_liststyle     = 3
 let g:netrt_browse_split = 4
 let g:netrw_special_syntax= 1
-let g:netrw_winsize = 20
+let g:netrw_winsize = 30
+let g:netrw_altv = 1
+let g:netrw_preview   = 1
+let g:netrw_sizestyle= 'h'
 
-set path+=**
+" open file vertically to the right
+augroup netrw_mappings
+    autocmd!
+    autocmd filetype netrw call Netrw_mappings()
+augroup END
+function! OpenToRight()
+  :rightbelow vnew
+  :wincmd p
+  :normal P
+endfunction
+function! Netrw_mappings()
+    noremap V :call OpenToRight()<cr>:<c-w>L
+endfunction
 
 " With thism you can enter ":Config" in normal mode to open the vimrc
 command! Config execute ":e $MYVIMRC"
@@ -30,7 +47,7 @@ nnoremap ; :
 set cpoptions+=y
 
 " remap Leader
-let g:mapleader = "w"
+let g:mapleader = "s"
 
 " Remaps for easyer access 
 " Change focus
@@ -62,6 +79,7 @@ tnoremap <silent> <Leader>m <C-w>:wincmd w<CR> " Move to next window
 let i = 1
 while i <= 9
   execute 'nnoremap <silent> <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+  execute 'nnoremap <silent> s' . i . ' :' . i . 'wincmd w<CR>'
   execute 'tnoremap <silent> <Leader>' . i . ' <C-w>:' .  i . 'wincmd w<CR>'
   let i = i + 1
 endwhile
