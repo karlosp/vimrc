@@ -189,6 +189,7 @@ if has("autocmd")
   augroup mysettings
     au FileType xslt,xml,css,html,xhtml,javascript,sh,config,c,cpp,docbook set smartindent shiftwidth=2 softtabstop=2 expandtab
     au FileType tex set wrap shiftwidth=2 softtabstop=2 expandtab
+    " Uncomment if pressing <tab> takes too long
     autocmd FileType c,cpp setlocal complete-=i
 
     " Confirm to PEP8
@@ -225,9 +226,78 @@ endif
 call plug#begin('~/.vim/plugged')
 " LSP testing
 " Plug 'dense-analysis/ale'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'ajh17/vimcompletesme'
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'ajh17/vimcompletesme'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" {{{
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gs :CocCommand clangd.switchSourceHeader<CR>
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <M-l>  <Plug>(coc-format-selected)
+nmap <M-l>  <Plug>(coc-format-selected)
+" }}}
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'ap/vim-css-color'
 Plug 'machakann/vim-highlightedyank'
 Plug 'puremourning/vimspector'
@@ -408,40 +478,41 @@ exec 'nnoremap <Leader>sr :so ' . g:sessions_dir . '/*.vim<C-D><BS><BS><BS><BS><
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~ End Session configurations ~~~~~~~~~~~~~~~
 
-" autocmd! " Remove ALL autocommands for the current group.
-if executable('/home/codac-dev/Documents/clangd/build/bin/clangd')
-    augroup lsp_clangd
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'clangd',
-                    \ 'cmd': {server_info->['/home/codac-dev/Documents/clangd/build/bin/clangd', '--background-index']},
-                    \ 'whitelist': ['c', 'cpp'],
-                    \ })
-	autocmd FileType cpp setlocal omnifunc=lsp#complete
-    augroup end
-endif
+" " autocmd! " Remove ALL autocommands for the current group.
+" if executable('/home/codac-dev/Documents/clangd/build/bin/clangd-temp')
+"     augroup lsp_clangd
+"         autocmd!
+"         autocmd User lsp_setup call lsp#register_server({
+"                     \ 'name': 'clangd',
+"                     \ 'cmd': {server_info->['/home/codac-dev/Documents/clangd/build/bin/clangd', '--background-index']},
+"                     \ 'whitelist': ['c', 'cpp'],
+"                     \ })
+"         autocmd FileType cpp setlocal omnifunc=lsp#complete
+"     augroup end
+" endif
 
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-		setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gr <plug>(lsp-references)
-    nmap <buffer> gi <plug>(lsp-implementation)
-    " nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
-    nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
-    nmap <buffer> K <plug>(lsp-hover)
+" function! s:on_lsp_buffer_enabled() abort
+"     setlocal omnifunc=lsp#complete
+" 		setlocal signcolumn=yes
+"     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+"     nmap <buffer> gd <plug>(lsp-definition)
+"     nmap <buffer> gr <plug>(lsp-references)
+"     nmap <buffer> gi <plug>(lsp-implementation)
+"     " nmap <buffer> gt <plug>(lsp-type-definition)
+"     nmap <buffer> gs <plug>(lsp-switch-source-header)
+"     nmap <buffer> <leader>rn <plug>(lsp-rename)
+"     nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+"     nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+"     nmap <buffer> K <plug>(lsp-hover)
  
-    " refer to doc to add more commands
-endfunction
+"     " refer to doc to add more commands
+" endfunction
 
-augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
+" augroup lsp_install
+"     au!
+"     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+"     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+" augroup END
 
 nnoremap <silent> <leader>gg :tab term ++close lazygit<CR>
 " vim: set sw=2 ts=2 et foldlevel=0 foldmethod=marker:
