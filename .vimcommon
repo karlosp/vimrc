@@ -25,7 +25,7 @@ function! OpenToRight()
   :normal P
 endfunction
 function! Netrw_mappings()
-    noremap V :call OpenToRight()<cr>:<c-w>L
+    noremap V :call OpenToRight()<cr>
 endfunction
 
 " With thism you can enter ":Config" in normal mode to open the vimrc
