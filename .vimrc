@@ -300,7 +300,9 @@ nmap <M-l>  <Plug>(coc-format-selected)
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'ap/vim-css-color'
 Plug 'machakann/vim-highlightedyank'
-Plug 'puremourning/vimspector'
+if has("unix") && has('python3')
+  Plug 'puremourning/vimspector'
+endif
 " {{{
   let g:vimspector_enable_mappings = 'HUMAN'
 " }}}
@@ -392,6 +394,7 @@ Plug 'mhinz/vim-startify'
   " remove cow header
   let g:startify_custom_header =['     >>>>  Startify VIM <<<<']
   let g:startify_change_to_dir = 0
+  let g:startify_change_to_dir = 1
 " }}}
 Plug 'tpope/vim-commentary'
 Plug 'mhinz/vim-signify'
