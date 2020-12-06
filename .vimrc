@@ -391,6 +391,7 @@ Plug 'mhinz/vim-startify'
 " {{{
   " remove cow header
   let g:startify_custom_header =['     >>>>  Startify VIM <<<<']
+  let g:startify_change_to_dir = 0
 " }}}
 Plug 'tpope/vim-commentary'
 Plug 'mhinz/vim-signify'
