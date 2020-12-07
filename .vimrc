@@ -294,8 +294,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <M-l>  <Plug>(coc-format-selected)
-nmap <M-l>  <Plug>(coc-format-selected)
+xmap <M-l>  <Plug>(coc-format)
+nmap <M-l>  <Plug>(coc-format)
 " }}}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'ap/vim-css-color'
