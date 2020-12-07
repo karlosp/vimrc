@@ -2,6 +2,7 @@
 :imap kj <Esc>:
 
 set path+=**
+runtime! macros/matchit.vim
 
 set splitright
 set splitbelow
