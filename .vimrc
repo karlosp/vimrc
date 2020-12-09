@@ -337,7 +337,7 @@ Plug 'junegunn/fzf.vim'
   nnoremap <silent> <leader>gf   :GFiles<CR>
   nnoremap <silent> <leader>b   :Buffers<CR>
   nnoremap <silent> <leader>?  :History<CR>
-  nnoremap <silent> <leader>bl   :BLines<CR>
+  nnoremap <silent> <leader>L   :BLines<CR>
   nnoremap <silent> <leader>l   :Lines<CR>
   nnoremap <silent> <leader>c   :Commits<CR>
   nnoremap <silent> <leader>a   :Ag<CR>
