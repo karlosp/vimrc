@@ -87,6 +87,7 @@ nnoremap <silent> <Leader>k <C-w>k
 nnoremap <silent> <Leader>l <C-w>l
 
 tnoremap <silent> ,, <C-\><C-n>
+tnoremap <silent> jk <C-w>:ChooseWin<CR>
 tnoremap <silent> <Leader>h <C-w>:wincmd h<CR>
 tnoremap <silent> <Leader>j <C-w>:wincmd j<CR>
 tnoremap <silent> <Leader>k <C-w>:wincmd k<CR>
