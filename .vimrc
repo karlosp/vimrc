@@ -22,7 +22,13 @@ nmap <leader>9 9gt
 noremap vA ggVG
 
 "Mode Settings
-set cursorline
+augroup OnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+  autocmd WinEnter * set relativenumber
+  autocmd WinLeave * set norelativenumber
+augroup END
 
 let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[3 q" "SR = REPLACE mode
