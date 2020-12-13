@@ -413,7 +413,6 @@ Plug 'airblade/vim-gitgutter'
   set updatetime=500
 " }}}
 Plug 'tpope/vim-fugitive'
-Plug 'powerline/powerline'
 Plug 'tyru/open-browser.vim'
 " {{{
   let g:netrw_nogx = 1
