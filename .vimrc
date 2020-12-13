@@ -235,7 +235,11 @@ call plug#begin('~/.vim/plugged')
 " Plug 'prabirshrestha/async.vim'
 " Plug 'prabirshrestha/vim-lsp'
 " Plug 'ajh17/vimcompletesme'
-
+Plug 't9md/vim-choosewin'
+" {{{
+nmap - <Plug>(choosewin)
+let g:choosewin_overlay_enable = 1
+" }}}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " {{{
 " Always show the signcolumn, otherwise it would shift the text each time
