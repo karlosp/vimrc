@@ -35,17 +35,20 @@ let &t_SR.="\e[3 q" "SR = REPLACE mode
 let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 
 " ====== GNOME TERMINAL SETTINGS =======  {{{
-let &t_TI = ""
-let &t_TE = ""
+if $GNOME_SHELL_SESSION_MODE != ""
+  echom "In GNOME shell"
+  let &t_TI = ""
+  let &t_TE = ""
 
-" MOVE LINE/BLOCK
-" Workaround for Alt to work in Gnome terminal :(
-let c='a'
-while c <= 'z'
-  exec "set <A-".c.">=\e".c
-  exec "imap \e".c." <A-".c.">"
-  let c = nr2char(1+char2nr(c))
-endw
+  " MOVE LINE/BLOCK
+  " Workaround for Alt to work in Gnome terminal :(
+  let c='a'
+  while c <= 'z'
+    exec "set <A-".c.">=\e".c
+    exec "imap \e".c." <A-".c.">"
+    let c = nr2char(1+char2nr(c))
+  endw
+endif
 
 " ========== Cursor settings: ===============
 " {{{
@@ -89,14 +92,14 @@ set clipboard=unnamedplus " save to system clipboard
 syntax on
 
 if !empty($CONEMUBUILD)
-    set term=pcansi
-    set t_Co=256
-    let &t_AB="\e[48;5;%dm"
-    let &t_AF="\e[38;5;%dm"
-    set bs=indent,eol,start
-    colorscheme wombat256mod
+  set term=pcansi
+  set t_Co=256
+  let &t_AB="\e[48;5;%dm"
+  let &t_AF="\e[38;5;%dm"
+  set bs=indent,eol,start
+  colorscheme wombat256mod
 else
-      colorscheme colorsbox-stbright
+  colorscheme colorsbox-stbright
 endif
 
 set encoding=utf-8
