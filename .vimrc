@@ -233,6 +233,7 @@ elseif empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+Plug 'rafi/awesome-vim-colorschemes'
 " LSP testing
 " Plug 'dense-analysis/ale'
 " Plug 'prabirshrestha/async.vim'
