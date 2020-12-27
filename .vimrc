@@ -7,6 +7,12 @@ if executable("zsh")
     set shell=zsh
 endif
 
+let g:mapleader = " "
+
+" Paste enhancements
+vnoremap <leader>P :.pu +
+vnoremap <leader>p "_dP
+
 " Switch between tabs
 nmap <leader>1 1gt
 nmap <leader>2 2gt
@@ -75,9 +81,11 @@ endif
 " }}}
 
 " copy (write) highlighted text to .vimbuffer
+if has("win32")
 vmap <C-S-c> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe <CR><CR>
 " paste from buffer
 map <C-S-v> :r ~/.vimbuffer<CR>
+endif
 
 function! s:DiffWithSaved()
   let filetype=&ft
