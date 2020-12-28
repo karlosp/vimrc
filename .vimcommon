@@ -1,19 +1,26 @@
 :imap jk <Esc>
 :imap kj <Esc>:
 
+autocmd BufRead .vimcommon set filetype=vim
+
+" Disable auto comment new line after commented line
+set formatoptions-=cro 
+
 set path+=**
 runtime! macros/matchit.vim
 
-set splitright
-set splitbelow
+set splitright splitbelow
 
-let g:netrw_liststyle     = 3
-let g:netrt_browse_split = 4
-let g:netrw_special_syntax= 1
-let g:netrw_winsize = 30
-let g:netrw_altv = 1
-let g:netrw_preview   = 1
-let g:netrw_sizestyle= 'h'
+" Netrw Settings {{{
+let  g:netrw_liststyle       =  3
+let  g:netrt_browse_split    =  4
+let  g:netrw_special_syntax  =  1
+let  g:netrw_winsize         =  30
+let  g:netrw_altv            =  1
+let  g:netrw_preview         =  1
+let  g:netrw_sizestyle       =  'h'
+let  g:netrw_banner          =  0
+
 " show file in netrw
 command! Flex let @/=expand("%:t") | execute 'Lex' expand("%:h") | normal n
 
@@ -46,7 +53,9 @@ augroup netrw_mappings
     autocmd filetype netrw call NetrwMappings()
 augroup END
 
-" With thism you can enter ":Config" in normal mode to open the vimrc
+" }}}
+
+" With this you can enter ":Config" in normal mode to open the vimrc
 command! Config execute ":e $MYVIMRC"
 " Reloads vimrc after saving but keep cursor position
 if !exists('*ReloadVimrc')
@@ -174,3 +183,4 @@ map <F10> :set paste<CR>
 map <F11> :set nopaste<CR>
 imap <F10> <C-O>:set paste<CR>
 imap <F11> <nop>
+" vim: set sw=2 ts=2 et foldlevel=0 foldmethod=marker:
