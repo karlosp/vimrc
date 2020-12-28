@@ -9,6 +9,8 @@ endif
 
 let g:mapleader = " "
 
+set formatoptions-=cro
+
 " Paste enhancements
 vnoremap <leader>P :.pu +
 vnoremap <leader>p "_dP
