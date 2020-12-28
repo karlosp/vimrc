@@ -42,9 +42,9 @@ let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[3 q" "SR = REPLACE mode
 let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 
-" ====== GNOME TERMINAL SETTINGS =======  {{{
-if $GNOME_SHELL_SESSION_MODE != ""
-  echom "In GNOME shell"
+" ====== Fix for <M-j|k> moving lines =======  {{{
+if $GNOME_SHELL_SESSION_MODE != "" || $SSH_CLIENT != ""
+  " echom "In GNOME shell or ssh" . $SSH_CLIENT
   let &t_TI = ""
   let &t_TE = ""
 
@@ -57,7 +57,9 @@ if $GNOME_SHELL_SESSION_MODE != ""
     let c = nr2char(1+char2nr(c))
   endw
 endif
+" }}}
 
+" ====== GNOME TERMINAL SETTINGS =======  {{{
 " ========== Cursor settings: ===============
 " {{{
 "  1 -> blinking block
@@ -244,6 +246,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'chrisbra/Colorizer'
 " LSP testing
 " Plug 'dense-analysis/ale'
 " Plug 'prabirshrestha/async.vim'
