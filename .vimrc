@@ -9,7 +9,8 @@ endif
 
 let g:mapleader = " "
 
-set formatoptions-=cro
+" Disable formating on new line or paste
+au BufEnter * set formatoptions-=r formatoptions-=c formatoptions-=o
 
 " " Paste enhancements
 " vnoremap <leader>P .pu +
