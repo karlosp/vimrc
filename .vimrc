@@ -278,20 +278,22 @@ nmap S <plug>(SubversiveSubstituteToEndOfLine)
 " }}} // clipboard
 " For live preview of replace
 " https://github.com/markonm/traces.vim ~/.vim/pack/plugins/start/traces.vim
-Plug 'rafi/awesome-vim-colorschemes'
+Plug 'rafi/awesome-vim-colorschemes' " {{{
+set runtimepath+=~/.vim/plugged/awesome-vim-colorschemes
+colorscheme PaperColor
+" colorscheme afterglow
+" }}}
 Plug 'chrisbra/Colorizer'
 " LSP testing
 " Plug 'dense-analysis/ale'
 " Plug 'prabirshrestha/async.vim'
 " Plug 'prabirshrestha/vim-lsp'
 " Plug 'ajh17/vimcompletesme'
-Plug 't9md/vim-choosewin'
-" {{{
+Plug 't9md/vim-choosewin' " {{{
 nmap - <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
 " }}}
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" {{{
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " {{{
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 set signcolumn=yes
@@ -366,22 +368,19 @@ endif
 " {{{
   let g:vimspector_enable_mappings = 'HUMAN'
 " }}}
-Plug 'szw/vim-maximizer'
-" {{{
+Plug 'szw/vim-maximizer' " {{{
   "Whether Maximizer should set default mappings or not:
   let g:maximizer_set_default_mapping = 1
   let g:maximizer_default_mapping_key = '<F2>'
   let g:maximizer_set_mapping_with_bang = 0
 " }}}
 Plug 'tpope/vim-dispatch'
-Plug 'ilyachur/cmake4vim'
-" {{{
+Plug 'ilyachur/cmake4vim' " {{{
 let g:cmake_compile_commands = 1
 let g:cmake_compile_commands_link = '.'
 " }}}
 " Plug 'cdelledonne/vim-cmake'
-" Plug 'foonathan/vim-cmake', {'as':'vim-cmake', 'branch':'feature/cmake_build_directory'}
-" " {{{
+" Plug 'foonathan/vim-cmake', {'as':'vim-cmake', 'branch':'feature/cmake_build_directory'} " " {{{
 "   let g:cmake_build_directory = '..'
 "   let g:cmake_link_compile_commands = 1
 " " }}}
@@ -391,8 +390,7 @@ Plug 'fedorenchik/qt-support.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-" {{{
+Plug 'junegunn/fzf.vim' " {{{
   nnoremap <silent> <leader>f   :Files<CR>
   nnoremap <silent> <leader>gf   :GFiles<CR>
   nnoremap <silent> <leader>b   :Buffers<CR>
@@ -403,8 +401,7 @@ Plug 'junegunn/fzf.vim'
   nnoremap <leader>a   :Ag 
   nmap <silent> cc :Commands!<CR>
 " }}}
-Plug 'scrooloose/nerdtree'
-" {{{
+Plug 'scrooloose/nerdtree' " {{{
   let g:NERDTreeMinimalUI = 1
   let g:NERDTreeHijackNetrw = 0
   let g:NERDTreeWinSize = 31
@@ -449,8 +446,7 @@ Plug 'scrooloose/nerdtree'
   " open NERDTree with ctrl + n
   nmap <F3> :call ToggleTree()<CR>
   " }}}
-Plug 'mhinz/vim-startify'
-" {{{
+Plug 'mhinz/vim-startify' " {{{
   " remove cow header
   let g:startify_custom_header =['     >>>>  Startify VIM <<<<']
   let g:startify_change_to_dir = 0
@@ -458,8 +454,7 @@ Plug 'mhinz/vim-startify'
 " }}}
 Plug 'tpope/vim-commentary'
 Plug 'mhinz/vim-signify'
-Plug 'airblade/vim-gitgutter'
-" {{{
+Plug 'airblade/vim-gitgutter' " {{{
   set updatetime=500
 " }}}
 Plug 'tpope/vim-fugitive'
@@ -474,10 +469,11 @@ Plug 'Shougo/junkfile.vim'
   nnoremap <leader>jo :JunkfileOpen 
   let g:junkfile#directory = $HOME . '/.vim/cache/junkfile'
 " }}}
-Plug 'junegunn/vim-peekaboo'
-" {{{
+Plug 'junegunn/vim-peekaboo' " {{{
   let g:peekaboo_delay = 400
+  let g:peekaboo_window = "vert bo 40new"
 " }}}
+
 call plug#end()
 let g:deoplete#enable_at_startup = 1
 
