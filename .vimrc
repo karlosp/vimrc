@@ -367,7 +367,7 @@ Plug 'junegunn/fzf.vim'
   nnoremap <silent> <leader>L   :BLines<CR>
   nnoremap <silent> <leader>l   :Lines<CR>
   nnoremap <silent> <leader>c   :Commits<CR>
-  nnoremap <silent> <leader>a   :Ag<CR>
+  nnoremap <leader>a   :Ag 
   nmap <silent> cc :Commands!<CR>
 " }}}
 Plug 'scrooloose/nerdtree'
