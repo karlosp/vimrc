@@ -11,9 +11,9 @@ let g:mapleader = " "
 
 set formatoptions-=cro
 
-" Paste enhancements
-vnoremap <leader>P :.pu +
-vnoremap <leader>p "_dP
+" " Paste enhancements
+" vnoremap <leader>P .pu +
+" vnoremap <leader>p "_dP
 
 " Switch between tabs
 nmap <leader>1 1gt
@@ -245,6 +245,38 @@ elseif empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+" {{{ clipboard
+Plug 'svermeulen/vim-cutlass'
+" {{{ Cutlass overrides the delete operations to actually just delete and not affect the current yank.
+" use for cutting
+nnoremap m d
+xnoremap m d
+
+nnoremap mm dd
+nnoremap M D
+" }}} // Cutlass
+Plug 'svermeulen/vim-yoink'
+" Yoink will automatically maintain a history of yanks that you can choose between when pasting. {{{
+let  g:yoinkSyncNumberedRegisters    =  1
+let  g:yoinkIncludeDeleteOperations  =  1
+let  g:yoinkMoveCursorToEndOfPaste   =  1
+nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+
+nmap <leader>p o<Esc><plug>(YoinkPaste_p)
+nmap <leader>P O<Esc><plug>(YoinkPaste_P)
+nmap p <plug>(YoinkPaste_p)
+nmap P <plug>(YoinkPaste_P)
+" }}} // Yonk
+Plug 'svermeulen/vim-subversive'
+" {{{
+nmap s <plug>(SubversiveSubstitute)
+nmap ss <plug>(SubversiveSubstituteLine)
+nmap S <plug>(SubversiveSubstituteToEndOfLine)
+" }}}
+" }}} // clipboard
+" For live preview of replace
+" https://github.com/markonm/traces.vim ~/.vim/pack/plugins/start/traces.vim
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'chrisbra/Colorizer'
 " LSP testing
