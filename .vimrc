@@ -246,6 +246,14 @@ elseif empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+Plug 'easymotion/vim-easymotion' " {{{
+" <Leader>f{char} to move to {char}
+map  f <Plug>(easymotion-bd-f)
+nmap f <Plug>(easymotion-overwin-f)
+
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+" }}}
 " {{{ clipboard
 Plug 'svermeulen/vim-cutlass'
 " {{{ Cutlass overrides the delete operations to actually just delete and not affect the current yank.
@@ -464,9 +472,8 @@ Plug 'tyru/open-browser.vim'
   vmap gx <Plug>(openbrowser-smart-search)
   nmap gx <Plug>(openbrowser-search)
 " }}}
-Plug 'Shougo/junkfile.vim'
-" {{{
-  nnoremap <leader>jo :JunkfileOpen 
+Plug 'Shougo/junkfile.vim' " {{{
+  nnoremap <leader>JO :JunkfileOpen 
   let g:junkfile#directory = $HOME . '/.vim/cache/junkfile'
 " }}}
 Plug 'junegunn/vim-peekaboo' " {{{
