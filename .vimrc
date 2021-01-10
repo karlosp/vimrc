@@ -101,7 +101,9 @@ function! s:DiffWithSaved()
 endfunction
 com! DiffSaved call s:DiffWithSaved()
 
-set clipboard=unnamedplus " save to system clipboard
+" cross-platform 
+set clipboard^=unnamed,unnamedplus
+
 syntax on
 
 if !empty($CONEMUBUILD)
