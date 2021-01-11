@@ -114,7 +114,8 @@ if !empty($CONEMUBUILD)
   set bs=indent,eol,start
   colorscheme wombat256mod
 else
-  colorscheme colorsbox-stbright
+  " colorscheme gruvbox
+  " colorscheme colorsbox-stbright
 endif
 
 set encoding=utf-8
@@ -290,7 +291,8 @@ nmap S <plug>(SubversiveSubstituteToEndOfLine)
 " https://github.com/markonm/traces.vim ~/.vim/pack/plugins/start/traces.vim
 Plug 'rafi/awesome-vim-colorschemes' " {{{
 set runtimepath+=~/.vim/plugged/awesome-vim-colorschemes
-colorscheme PaperColor
+  colorscheme gruvbox
+" colorscheme PaperColor
 " colorscheme afterglow
 " }}}
 Plug 'chrisbra/Colorizer'
