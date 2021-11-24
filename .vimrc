@@ -464,6 +464,7 @@ Plug 'tpope/vim-commentary'
 Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter' " {{{
   set updatetime=500
+  let g:gitgutter_preview_win_floating = 1
 " }}}
 Plug 'tpope/vim-fugitive'
 Plug 'tyru/open-browser.vim'
