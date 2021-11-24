@@ -165,7 +165,7 @@ set confirm             " get a dialog when :q, :w, or :wq fails
 set nobackup            " no backup~ files.
 set viminfo='100,\"500   " remember copy registers after quitting in the .viminfo file -- 20 jump links, regs up to 500 lines'
 set hidden              " remember undo after quitting
-set history=500         " keep 50 lines of command history
+set history=5000        " keep #N lines of command history
 set mouse=a             " use mouse in visual mode (not normal,insert,command,help mode
 
 
