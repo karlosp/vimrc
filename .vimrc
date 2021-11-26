@@ -370,12 +370,12 @@ Plug 'ap/vim-css-color'
 " must be after colorscheme execution
 Plug 'machakann/vim-highlightedyank'
 highlight HighlightedyankRegion ctermfg=0 ctermbg=208 guifg=#000000 guibg=#ff8700 
-if has("unix") && has('python3')
-  Plug 'puremourning/vimspector'
-endif
-" {{{
-  let g:vimspector_enable_mappings = 'HUMAN'
-" }}}
+" if has("unix") && has('python3')
+"   Plug 'puremourning/vimspector'
+" endif
+" " {{{
+"   let g:vimspector_enable_mappings = 'HUMAN'
+" " }}}
 Plug 'szw/vim-maximizer' " {{{
   "Whether Maximizer should set default mappings or not:
   let g:maximizer_set_default_mapping = 1
