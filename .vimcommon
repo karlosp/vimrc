@@ -137,11 +137,6 @@ nnoremap gm m
 
 set tabstop=2           " number of spaces a tab counts for
 set shiftwidth=2        " spaces for autoindents
-"set expandtab           " turn a tabs into spaces
-
-
-" system settings
-set history=500          " keep 50 lines of command history
 
 " Use persistent history
 function! EnsureDirExists (dir)
@@ -155,12 +150,21 @@ function! EnsureDirExists (dir)
   endif
 endfunction
 
-call EnsureDirExists($HOME . '/.vim/undodir')
-let myUndoDir = '~/.vim/undodir'
+let myUndoDir = $HOME . "/.vim/undodir"
+call EnsureDirExists(myUndoDir)
 set undofile                " Save undos after file closes
-set undodir=~/.vim/undodir  " where to save undo histories
+let &undodir=myUndoDir.'//'  " where to save undo histories
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
+
+let mySwapDir = $HOME . "/.vim/swap"
+call EnsureDirExists(mySwapDir)
+let &directory = mySwapDir . '//'
+
+let myBackupDir = $HOME . "/.vim/backup"
+call EnsureDirExists(myBackupDir)
+let &backupdir = myBackupDir . '//'
+
 
 " color settings (if terminal/gui supports it)
 if &t_Co > 2 || has("gui_running")
