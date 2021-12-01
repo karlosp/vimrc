@@ -171,7 +171,7 @@ if &t_Co > 2 || has("gui_running")
   syntax on          " enable colors
   set hlsearch       " highlight search (very useful!)
   set incsearch      " search incremently (search while typing)
-  nnoremap <CR> :noh<CR><CR>
+  nnoremap <silent> <CR> :noh<CR>
 endif
 
 " Keep search results at the center of screen
