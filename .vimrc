@@ -160,9 +160,9 @@ set fileformat=unix     " file mode is unix
 
 " system settings
 set lazyredraw          " no redraws in macros
-set noswapfile          " disable creating of *.swp files
+" set noswapfile          " disable creating of *.swp files
 set confirm             " get a dialog when :q, :w, or :wq fails
-set nobackup            " no backup~ files.
+" set nobackup            " no backup~ files.
 set viminfo='100,\"500   " remember copy registers after quitting in the .viminfo file -- 20 jump links, regs up to 500 lines'
 set hidden              " remember undo after quitting
 set history=5000        " keep #N lines of command history
@@ -249,6 +249,12 @@ elseif empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+Plug 'gioele/vim-autoswap' " {{{
+" Please Vim, stop with these swap file messages. Just switch to the correct window!
+" Linux users: you must install wmctrl to be able to automatically switch to the Vim window with the open file.
+set title titlestring=
+let g:autoswap_detect_tmux = 1
+" }}}
 Plug 'bogado/file-line' " {{{
 "When you open a file:line, for instance when coping and pasting from an error from your compiler vim tries to open a file with a colon in its name.
 " }}}
