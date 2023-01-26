@@ -1,2 +1,2 @@
-source C:\Users\pkarlovsek\.vimcommon
-
+imap jk <Esc>
+imap kj <Esc>:
