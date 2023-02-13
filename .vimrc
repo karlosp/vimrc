@@ -186,11 +186,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 " paste mode toggle (needed when using autoindent/smartindent)
-map <F10> :set paste<CR>
-map <F11> :set nopaste<CR>
-imap <F10> <C-O>:set paste<CR>
-imap <F11> <nop>
-set pastetoggle=<F11>
+set pastetoggle=<F12>
 
 " Use of the filetype plugins, auto completion and indentation support
 filetype plugin indent on
@@ -249,6 +245,8 @@ elseif empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+Plug 'mkitt/tabline.vim'
+" Plug 'Exafunction/codeium.vim'
 Plug 'gioele/vim-autoswap' " {{{
 " Please Vim, stop with these swap file messages. Just switch to the correct window!
 " Linux users: you must install wmctrl to be able to automatically switch to the Vim window with the open file.
